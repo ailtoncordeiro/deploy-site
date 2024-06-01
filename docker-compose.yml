@@ -1,0 +1,17 @@
+services:
+  web:
+    build: .
+    image: meusite:beta
+    container_name: meusite
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./dat/certbot/www:/var/www/certbot
+  
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./dat/certbot/www:/var/www/certbot
